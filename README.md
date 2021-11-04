@@ -1,7 +1,10 @@
 # Dynatrace NodeJS Native Wrapper
 
-This is a wrapper around the C/C++ SDK, to monitor applications where the NodeJS agent is not supported
+This is a wrapper around the C/C++ SDK, to monitor applications where the NodeJS agent is not supported.  
 This was built for Node 6.X applications
+
+
+> :warning: **Not supported**: This project is not supported by Dynatrace, it is a personal project, use at your own risk. :warning: 
 
 ## Requirements
 
