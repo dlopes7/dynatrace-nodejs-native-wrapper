@@ -21,4 +21,10 @@ After that, run
 
 * `npm install -g node-gyp@6.1.0`
 * `npm config set msvs_version 2017`
+* `npm install`
 * `node-gyp rebuild`
+
+## Running
+
+You need the OneAgent installed on the machine.  
+You can run `node sample_app.js` for a small demo.  
