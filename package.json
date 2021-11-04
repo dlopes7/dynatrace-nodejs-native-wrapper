@@ -1,0 +1,16 @@
+{
+  "name": "dynatrace-node-native-wrapper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nan": "^2.15.0"
+  },
+  "devDependencies": {
+    "bindings": "^1.5.0",
+    "node-addon-api": "^1.4.0"
+  }
+}
