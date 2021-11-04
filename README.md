@@ -4,7 +4,7 @@ This is a wrapper around the C/C++ SDK, to monitor applications where the NodeJS
 This was built for Node 6.X applications
 
 
-> :warning: **Not supported**: This project is not supported by Dynatrace, it is a personal project, use at your own risk. :warning: 
+> :warning: **Not supported**: This project is not supported by Dynatrace, it is a personal project, use at your own risk. 
 
 ## Requirements
 
