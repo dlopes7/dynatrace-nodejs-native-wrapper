@@ -13,7 +13,7 @@
             "defines": ["NAPI_DISABLE_CPP_EXCEPTIONS"],
             "link_settings": {
                 "libraries": [
-                    "<(module_root_dir)/../OneAgent-SDK-for-C/lib/windows-x86_64/onesdk_shared.lib",
+                    "<(module_root_dir)/lib/windows-x86_64/onesdk_shared.lib",
                 ]
             }
         },
@@ -25,7 +25,7 @@
          [
             {
                'destination': '<(module_root_dir)/build/Release/',
-               'files': ['<(module_root_dir)/../OneAgent-SDK-for-C/lib/windows-x86_64/onesdk_shared.dll']
+               'files': ['<(module_root_dir)/lib/windows-x86_64/onesdk_shared.dll']
             }
          ]
       }

@@ -1,5 +1,3 @@
-#include <inttypes.h>
-
 #include <node.h>
 #include <nan.h>
 #include <onesdk.h>
@@ -10,8 +8,7 @@ using Nan::GetFunction;
 using Nan::New;
 using Nan::Set;
 
-const char *NanToCString(v8::Local<v8::Value> &value)
-{
+const char *NanToCString(v8::Local<v8::Value> &value){
   Nan::Utf8String val(value);
   return *val ? *val : "<string conversion failed>";
 }
@@ -20,19 +17,20 @@ const char *NanToCString(v8::Local<v8::Value> &value)
 NAN_METHOD(dt_onesdk_initialize) {
   onesdk_stub_set_logging_level(0);
   onesdk_result_t const onesdk_init_result = onesdk_initialize();
-  // printf("ONESDK initialized:   %s\n", (onesdk_init_result == ONESDK_SUCCESS) ? "yes" : "no");
   info.GetReturnValue().Set(onesdk_init_result);
 }
 
 // create web app
 NAN_METHOD(dt_onesdk_webapplicationinfo_create) {
-  onesdk_webapplicationinfo_handle_t const m_web_application_info_handle = onesdk_webapplicationinfo_create(
-            onesdk_asciistr("example.com"),             // web server name
-            onesdk_asciistr("sample1.web_service"),     // unique application/service name
-            onesdk_asciistr("/sample1/web-service/"));  
+  const char* web_server_name = NanToCString(info[0]);
+  const char* sevice_name = NanToCString(info[1]);
+  const char* context_root = NanToCString(info[2]);
 
-  // printf("create_web_app, web_application_handle=%d\n", m_web_application_info_handle);
-  // printf("%" PRIu64 "\n\n", m_web_application_info_handle);
+  onesdk_webapplicationinfo_handle_t const m_web_application_info_handle = onesdk_webapplicationinfo_create(
+            onesdk_asciistr(web_server_name),             // web server name
+            onesdk_asciistr(sevice_name),     // unique application/service name
+            onesdk_asciistr(context_root));  
+
   info.GetReturnValue().Set((double)m_web_application_info_handle);
 }
 
@@ -40,12 +38,14 @@ NAN_METHOD(dt_onesdk_webapplicationinfo_create) {
 // create incoming web request tracer
 NAN_METHOD(dt_onesdk_incomingwebrequesttracer_create) {
 
-  onesdk_webapplicationinfo_handle_t web_application_handle = info[0]->NumberValue();
-  printf("create_tracer, web_application_handle=%" PRIu64 "\n", web_application_handle);
+  const char* url = NanToCString(info[0]);
+  const char* method = NanToCString(info[1]);
 
+
+  onesdk_webapplicationinfo_handle_t web_application_handle = info[0]->NumberValue();
   onesdk_tracer_handle_t const tracer = onesdk_incomingwebrequesttracer_create(web_application_handle,
-            onesdk_utf8str("https://localhost:8080"),
-            onesdk_utf8str("GET"));
+            onesdk_utf8str(url),
+            onesdk_utf8str(method));
 
   info.GetReturnValue().Set((double)tracer);
 }

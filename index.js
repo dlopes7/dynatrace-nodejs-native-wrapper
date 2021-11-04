@@ -1,4 +1,4 @@
-var dynatrace = require("bindings")("dynatrace_wrapper");
+const dynatrace = require("bindings")("dynatrace_wrapper");
 
 // Init
 function onesdk_initialize() {
@@ -7,14 +7,14 @@ function onesdk_initialize() {
 module.exports.onesdk_initialize = onesdk_initialize;
 
 // Web Application Info
-function onesdk_webapplicationinfo_create() {
-    return dynatrace.onesdk_webapplicationinfo_create();
+function onesdk_webapplicationinfo_create(web_server_name, service_name, context_root) {
+    return dynatrace.onesdk_webapplicationinfo_create(web_server_name, service_name, context_root);
 }
 module.exports.onesdk_webapplicationinfo_create = onesdk_webapplicationinfo_create;
 
 // Incoming Web Request - Create
-function onesdk_incomingwebrequesttracer_create(web_application_handle) {
-    return dynatrace.onesdk_incomingwebrequesttracer_create(web_application_handle);
+function onesdk_incomingwebrequesttracer_create(web_application_handle, url, method) {
+    return dynatrace.onesdk_incomingwebrequesttracer_create(web_application_handle, url, method);
 }
 module.exports.onesdk_incomingwebrequesttracer_create = onesdk_incomingwebrequesttracer_create;
 
